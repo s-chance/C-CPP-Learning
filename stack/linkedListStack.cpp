@@ -19,6 +19,8 @@ public:
     void pop(); //出栈
     char top(); //获取栈顶元素
     bool empty(); //判断是否为空栈, true空 false非空
+
+    int len(); //获取当前长度
 };
 
 //无参构造函数初始化头节点和长度
@@ -78,11 +80,8 @@ char linkedListStack::top()
     {
         //头节点为空, 输出提示信息后return终止
         cout << "此时为空栈" << endl;
-        return;
+        return 0;
     }
-
-    //输出头节点的数据
-    cout << head->data;
     return head->data;
 }
 
@@ -100,6 +99,12 @@ bool linkedListStack::empty()
     }
 }
 
+//获取当前长度
+int linkedListStack::len()
+{
+    return length;
+}
+
 //测试一: 依次入栈'A' 'B' 'C' 输出栈顶元素'C'
 void test1()
 {
@@ -107,7 +112,8 @@ void test1()
     stack.push('A');
     stack.push('B');
     stack.push('C');
-    stack.top();
+    //输出头节点的数据
+    cout << stack.top();
 }
 
 //测试二: 在测试一的基础上, 执行两次出栈, 再输出栈顶元素
@@ -120,8 +126,8 @@ void test2()
 
     stack.pop();
     stack.pop();
-
-    stack.top();
+    //输出头节点的数据
+    cout << stack.top();
 }
 
 //测试三: 在测试二的基础上, 入栈'D' 'E' 'F', 再输出栈顶元素
@@ -139,7 +145,8 @@ void test3()
     stack.push('E');
     stack.push('F');
 
-    stack.top();
+    //输出头节点的数据
+    cout << stack.top();
 }
 
 //测试四: 在测试三的基础上, 执行四次出栈, 再输出栈顶元素
@@ -162,73 +169,120 @@ void test4()
     stack.pop();
     stack.pop();
 
-    stack.top();
+    //输出头节点的数据
+    cout << stack.top();
 }
 
 
-int f[100001];
 //选做: 输出一个字符串所有可能的出栈情况
-void demo()
+linkedListStack stackGlobal;
+char res[1000][1000];
+char curr[1000];
+string s;
+//回溯函数
+//level表示当前栈的层级, 栈空则为0, len表示字符串长度
+void back(int level, int index, int len)
 {
-    f[0] = 1;
-    f[1] = 1;
-    linkedListStack stack;
-    linkedListStack stack2;
-    linkedListStack stack3;
-    string s;
-    cin >> s;
-    int len = s.length();
+    //栈外元素已经推完, 存储所有结果数据, 进行输出
+    if(level==len)
+    {
+        int row=-1, flag=-1;
+        for(int i=0;i<100;i++)
+        {
+            if(res[i][len-1]==0) //找到未赋值过的数组行
+            {
+                row=i;
+                break;
+            }
+        }
 
-    //全入栈
-    for(int i=0;i<len;i++)
+        //读取栈中的数据, 存入结果数组
+        for(int i=0;i<stackGlobal.len();i++)
+        {
+            char n;
+            char top[stackGlobal.len()];
+            for(int j=stackGlobal.len()-1-i;j>=0;j--)
+            {
+                top[j] = stackGlobal.top();
+                stackGlobal.pop();
+            }
+            n = stackGlobal.top();
+            for(int k=0;k<stackGlobal.len()-i;k++)
+            {
+                stackGlobal.push(top[k]);
+            }
+            
+            for(int j=len-1;j>=0;j--)
+            {
+                if (res[row][j]==0)
+                {
+                    res[row][j]=n;
+                    break;
+                }
+            }
+        }
+
+        for(int i=0;i< len;i++)
+        {
+            if (res[row][i]==0)
+            {
+                res[row][i]=curr[i];
+            }
+            else break;
+        }
+
+    }
+    else
+    {
+        if (stackGlobal.len()==0)
+        {
+            stackGlobal.push(s[level]);
+            back(level+1, index, len);
+            stackGlobal.pop();
+        }
+        else
+        {
+            for(int i=0;i<2;i++)
+            {
+                if (i==0)
+                {
+                    stackGlobal.push(s[level]);
+                    back(level+1,index, len);
+                    stackGlobal.pop();
+                }
+                else
+                {
+                    char n = stackGlobal.top();
+                    stackGlobal.pop();
+                    curr[index] = n;
+                    back(level, index+1, len);
+                    stackGlobal.push(n);
+                }
+            }
+        }
+    }
+}
+
+void result(int len)
+{
+    int row = -1;
+    for(int i=0;i<100;i++)
+    {
+        if (res[i][0]==0)
+        {
+            row = i;
+            break;
+        }
+    }
+    for(int i=0;i<row;i++)
     {
         for(int j=0;j<len;j++)
         {
-            stack.push(s[j]);
-            stack2.push(s[len-1-j]);
+            cout << res[i][j]<<" ";
         }
-            
-        for(int k=0;k<i;k++)
-        {
-            stack.pop();
-            // stack.push(s[len-1-k]);
-            int t = len - i;
-            while (t--)
-            {
-                stack2.pop();
-            }
-        }
-        
-        int size = 0;
-            
-            while (!stack.empty())
-            {
-                stack.top();
-                stack.pop();
-                size++;
-            }
-            while (!stack2.empty())
-            {
-                if (size!=len)
-                    stack2.top();
-                stack2.pop();
-                size++;
-            }
-            cout << endl;
-        
+        cout << "\n";
     }
-    
-    cout << endl;
 }
-
-// linkedListStack solve(char c)
-// {
-//     linkedListStack stack;
-//     stack.push(c);
-
-
-//     return solve();
-// }
 
 int main()
 {
@@ -237,6 +291,13 @@ int main()
     // test3();
     // test4();
 
-    demo();
+    cout << "输出所有可能的出栈情况\n";
+    cout << "请输入一个字符串: ";
+    //输入字符串
+    cin >> s;
+    //记录字符串长度
+    int len = s.length();
+    back(0, 0, len);
+    result(len);
 
 }

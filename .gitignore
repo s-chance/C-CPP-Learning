@@ -1,4 +1,5 @@
 *.exe
-
-/class
-/simpleWork
+.vscode
+class
+simpleWork
+/stack/model.cpp
