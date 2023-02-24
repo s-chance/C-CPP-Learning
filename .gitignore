@@ -3,3 +3,5 @@
 class
 simpleWork
 /stack/model.cpp
+/build
+*/.cache
