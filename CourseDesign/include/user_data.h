@@ -13,7 +13,6 @@ struct User {
 // 数据节点
 class Node {
  private:
-  int bf = 0;                              // 平衡因子
   User user;                               // 用户信息
   string color;                            // 节点颜色
   Node *parent = nullptr;                  // 父节点
@@ -25,7 +24,6 @@ class Node {
   ~Node();  // 析构函数
 
   // getter
-  int getBF();        // 获取平衡因子
   string getColor();  // 获取节点颜色
   User &getUser();    // 获取用户信息
   Node *getParent();  // 获取父节点
@@ -33,7 +31,6 @@ class Node {
   Node *getRight();   // 获取右子节点
 
   // setter
-  void setBF(int bf);                          // 设置平衡因子
   void setColor(string color);                 // 设置节点颜色
   void setUser(string name, string password);  // 设置用户信息
   void setParent(Node *node);                  // 设置父节点

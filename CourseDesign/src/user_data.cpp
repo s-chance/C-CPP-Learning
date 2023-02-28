@@ -13,8 +13,6 @@ Node::Node() {}
 Node::~Node() {}
 
 // getter
-int Node::getBF() { return this->bf; }
-
 string Node::getColor() { return this->color; }
 
 User &Node::getUser() { return user; }
@@ -26,8 +24,6 @@ Node *Node::getLeft() { return this->left; }
 Node *Node::getRight() { return this->right; }
 
 // setter
-void Node::setBF(int bf) { this->bf = bf; }
-
 void Node::setColor(string color) { this->color = color; }
 
 void Node::setUser(string name, string password) {
