@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/entropy/Documents/CPP-Practice/build",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/CourseDesign.dir/home/entropy/Documents/CPP-Practice/CourseDesign/src/main.cpp.o -c /home/entropy/Documents/CPP-Practice/CourseDesign/src/main.cpp",
+  "file": "/home/entropy/Documents/CPP-Practice/CourseDesign/src/main.cpp"
+},
+{
+  "directory": "/home/entropy/Documents/CPP-Practice/build",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/CourseDesign.dir/home/entropy/Documents/CPP-Practice/CourseDesign/src/rb_tree.cpp.o -c /home/entropy/Documents/CPP-Practice/CourseDesign/src/rb_tree.cpp",
+  "file": "/home/entropy/Documents/CPP-Practice/CourseDesign/src/rb_tree.cpp"
+},
+{
+  "directory": "/home/entropy/Documents/CPP-Practice/build",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/CourseDesign.dir/home/entropy/Documents/CPP-Practice/CourseDesign/src/user_data.cpp.o -c /home/entropy/Documents/CPP-Practice/CourseDesign/src/user_data.cpp",
+  "file": "/home/entropy/Documents/CPP-Practice/CourseDesign/src/user_data.cpp"
+}
+]

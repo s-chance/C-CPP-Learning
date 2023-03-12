@@ -1,0 +1,9 @@
+*.exe
+.vscode
+class
+simpleWork
+/stack/model.cpp
+/build
+*.cache
+*.docx
+*.zip

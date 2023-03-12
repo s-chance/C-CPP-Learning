@@ -1,0 +1,3 @@
+/home/entropy/Documents/CPP-Practice/build/CMakeFiles/CourseDesign.dir
+/home/entropy/Documents/CPP-Practice/build/CMakeFiles/edit_cache.dir
+/home/entropy/Documents/CPP-Practice/build/CMakeFiles/rebuild_cache.dir
